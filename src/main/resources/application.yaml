@@ -21,3 +21,9 @@ spring:
     console:
       enabled: true
       path: /h2-console
+
+java-advanced-spring-boot:
+  security:
+    jwt:
+      secret: rX7kL2mP5nQ8sT1vW4yZ9aB3cE6fG0hI4jK
+      expiration: PT1H

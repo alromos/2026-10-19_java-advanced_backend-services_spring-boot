@@ -3,6 +3,7 @@ package by.alromos.java.advanced.spring.boot.controller;
 import by.alromos.java.advanced.spring.boot.dto.BookRequest;
 import by.alromos.java.advanced.spring.boot.model.Book;
 import by.alromos.java.advanced.spring.boot.service.BookService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@SecurityRequirement(name = "oauth2")
 @RestController
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
