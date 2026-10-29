@@ -50,6 +50,8 @@ public class SecurityConfig {
             .requestMatchers("/api/auth/**").permitAll()
             .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
             .requestMatchers("/h2-console/**").permitAll()
+            .requestMatchers("/actuator/**").permitAll()
+            .requestMatchers("/error").permitAll()
             .requestMatchers(HttpMethod.GET, "/api/books/**").hasAnyRole("USER", "ADMIN")
             .requestMatchers(HttpMethod.POST, "/api/books/**").hasRole("ADMIN")
             .requestMatchers(HttpMethod.PUT, "/api/books/**").hasRole("ADMIN")
