@@ -7,6 +7,7 @@ import by.alromos.java.advanced.spring.boot.model.Author;
 import by.alromos.java.advanced.spring.boot.model.Book;
 import by.alromos.java.advanced.spring.boot.model.Genre;
 import by.alromos.java.advanced.spring.boot.service.BookService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import java.util.Comparator;
 import java.util.Set;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import org.springframework.web.server.ResponseStatusException;
 
+@SecurityRequirement(name = "oauth2")
 @RestController
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
