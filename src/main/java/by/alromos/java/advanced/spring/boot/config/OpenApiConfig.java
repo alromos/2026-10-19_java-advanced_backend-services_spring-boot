@@ -5,7 +5,9 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.OAuthFlow;
 import io.swagger.v3.oas.models.security.OAuthFlows;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import org.springdoc.core.customizers.OpenApiCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -35,6 +37,22 @@ public class OpenApiConfig {
                     )
             )
         );
+  }
+
+  @Bean
+  public OpenApiCustomizer openApiCustomizer() {
+    return openApi -> {
+      SecurityRequirement actuatorSecurityItem = new SecurityRequirement()
+          .addList("oauth2");
+
+      openApi.getPaths()
+          .forEach((path, pathItem) -> {
+            if (path.startsWith("/actuator")) {
+              pathItem.readOperations()
+                  .forEach(operation -> operation.addSecurityItem(actuatorSecurityItem));
+            }
+          });
+    };
   }
 
 }
